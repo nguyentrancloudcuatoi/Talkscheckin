@@ -127,4 +127,24 @@ function updateUserProfile() {
     if (usernameElement && userData.name) {
         usernameElement.textContent = userData.name;
     }
+}
+
+function checkAuthStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+        window.location.href = '/index.html';
+        return;
+    }
+    
+    const userData = localStorage.getItem('userData');
+    if (!userData) {
+        handleLogout();
+        return;
+    }
+}
+
+function handleLogout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userData');
+    window.location.href = '/index.html';
 } 

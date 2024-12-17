@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkAuthStatus() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-        window.location.href = '../Sign/index.html';
+        window.location.href = '/index.html';
         return;
     }
     
@@ -20,12 +20,9 @@ function checkAuthStatus() {
 }
 
 function handleLogout() {
-    // Clear user session
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userData');
-    
-    // Sửa lại đường dẫn để trỏ về đúng trang index.html
-    window.location.href = '../Sign/index.html';
+    window.location.href = '/index.html';
 }
 
 function prefillUserData() {

@@ -55,24 +55,21 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkAuthStatus() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-        window.location.href = '.Sign/index.html';
+        window.location.href = '/index.html';
         return;
     }
     
     const userData = localStorage.getItem('userData');
     if (!userData) {
-        handleLogout(); // Nếu không có dữ liệu người dùng, đăng xuất
+        handleLogout();
         return;
     }
 }
 
 function handleLogout() {
-    // Clear user session
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userData');
-    
-    // Redirect to login page
-    window.location.href = 'index.html';
+    window.location.href = '/index.html';
 }
 
 // Handle notifications

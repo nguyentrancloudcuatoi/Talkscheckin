@@ -14,10 +14,12 @@ function handleLogin(event) {
     localStorage.setItem('userData', JSON.stringify({
         name: email.split('@')[0],
         email: email,
-        avatar: '../image/avatar-default.png'
+        avatar: '/image/avatar-default.png'
     }));
 
-    window.location.href = '../Desktop/dashboard.html';
+    // Chuyển hướng đến dashboard
+    window.location.href = '/Desktop/dashboard.html';
+    return false;
 }
 
 function handleRegister(event) {
@@ -43,7 +45,7 @@ function handleRegister(event) {
 document.addEventListener('DOMContentLoaded', function() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn) {
-        window.location.href = 'dashboard.html';
+        window.location.href = '/Desktop/dashboard.html';
     }
 });
 

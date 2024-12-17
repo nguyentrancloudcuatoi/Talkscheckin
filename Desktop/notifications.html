@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông báo công - Talks English</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="side-menu">
+        <div class="logo-container">
+            <img src="/image/logo.png" alt="Logo" class="logo">
+        </div>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
+            <li><a href="attendance-list.html"><i class="fas fa-list"></i> Danh sách điểm danh</a></li>
+            <li class="active"><a href="notifications.html"><i class="fas fa-bell"></i> Thông báo công</a></li>
+        </ul>
+        <div class="logout-btn">
+            <button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <header>
+            <div class="header-content">
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm thông báo...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-section">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="/image/avatar.jpg" alt="User Avatar" class="avatar">
+                        <span class="username">John Doe</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="notifications-container">
+                <div class="notifications-header">
+                    <h2>Thông báo công</h2>
+                    <button class="settings-btn" onclick="openNotificationSettings()">
+                        <i class="fas fa-cog"></i> Cài đặt thông báo
+                    </button>
+                </div>
+
+                <div class="notifications-list" id="notificationsList">
+                    <!-- Notifications will be inserted here via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal cài đặt thông báo -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <h3>Cài đặt thông báo</h3>
+            <div class="settings-form">
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="systemNotifications" checked>
+                        Nhận thông báo trên hệ thống
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="emailNotifications">
+                        Nhận thông báo qua email
+                    </label>
+                </div>
+                <div class="modal-buttons">
+                    <button onclick="saveNotificationSettings()">Lưu</button>
+                    <button onclick="closeModal()">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="notifications.js"></script>
+</body>
+</html> 

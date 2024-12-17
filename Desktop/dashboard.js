@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkAuthStatus() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-        window.location.href = '../Sign/auth.html';
+        window.location.href = '.Sign/index.html';
         return;
     }
     
@@ -72,7 +72,7 @@ function handleLogout() {
     localStorage.removeItem('userData');
     
     // Redirect to login page
-    window.location.href = 'auth.html';
+    window.location.href = 'index.html';
 }
 
 // Handle notifications
@@ -92,9 +92,9 @@ function updateUserProfile() {
     }
     if (userData.avatar) {
         avatarElement.src = userData.avatar;
-         // Thêm xử lý lỗi khi ảnh không tải được
+         // Thêm xử lý lỗi khi image không tải được
          avatarElement.onerror = function() {
-            this.src = '/ảnh/avatar-default.png'; // Ảnh fallback
+            this.src = 'image/avatar-default.png'; // image fallback
          };
     }
 }

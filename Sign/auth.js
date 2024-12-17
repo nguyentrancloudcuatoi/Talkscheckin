@@ -14,7 +14,7 @@ function handleLogin(event) {
     localStorage.setItem('userData', JSON.stringify({
         name: email.split('@')[0],
         email: email,
-        avatar: '../ảnh/avatar-default.png'
+        avatar: '../image/avatar-default.png'
     }));
 
     window.location.href = '../Desktop/dashboard.html';

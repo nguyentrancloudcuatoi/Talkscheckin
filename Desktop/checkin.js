@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function checkAuthStatus() {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-        window.location.href = '../Sign/auth.html';
+        window.location.href = '../Sign/index.html';
         return;
     }
     
@@ -24,8 +24,8 @@ function handleLogout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userData');
     
-    // Sửa lại đường dẫn để trỏ về đúng trang auth.html
-    window.location.href = '../Sign/auth.html';
+    // Sửa lại đường dẫn để trỏ về đúng trang index.html
+    window.location.href = '../Sign/index.html';
 }
 
 function prefillUserData() {
@@ -38,6 +38,15 @@ function prefillUserData() {
 function handleCheckin(event) {
     event.preventDefault();
     
+    // Validate required fields
+    const requiredFields = ['email', 'classCode', 'teachingMethod', 'lessonName', 'lessonDate', 'duration'];
+    const missingFields = requiredFields.filter(field => !document.getElementById(field).value);
+    
+    if (missingFields.length > 0) {
+        alert('Vui lòng điền đầy đủ thông tin bắt buộc');
+        return false;
+    }
+    
     const formData = {
         email: document.getElementById('email').value,
         classCode: document.getElementById('classCode').value,
@@ -47,22 +56,24 @@ function handleCheckin(event) {
         lessonName: document.getElementById('lessonName').value,
         lessonDate: document.getElementById('lessonDate').value,
         duration: document.getElementById('duration').value,
-        attendanceStatus: document.getElementById('attendanceStatus').value,
+        attendanceStatus: document.getElementById('attendanceStatus').value || 'present',
         comments: document.getElementById('comments').value,
         timestamp: new Date().toISOString(),
         status: 'checked'
     };
 
-    let checkins = JSON.parse(localStorage.getItem('checkins')) || [];
+    try {
+        let checkins = JSON.parse(localStorage.getItem('checkins')) || [];
+        checkins.unshift(formData);
+        localStorage.setItem('checkins', JSON.stringify(checkins));
+        console.log('Saved checkin data:', formData);
+        alert('Check-in thành công!');
+        window.location.href = 'attendance-list.html';
+    } catch (error) {
+        console.error('Error saving checkin:', error);
+        alert('Có lỗi xảy ra, vui lòng thử lại!');
+    }
     
-    checkins.unshift(formData);
-    
-    localStorage.setItem('checkins', JSON.stringify(checkins));
-
-    console.log('Saved checkin data:', formData);
-    
-    alert('Check-in submitted successfully!');
-    window.location.href = 'attendance-list.html';
     return false;
 }
 
@@ -74,4 +85,12 @@ function requestEdit() {
 function checkSavedData() {
     const checkins = JSON.parse(localStorage.getItem('checkins')) || [];
     console.log('Current checkins data:', checkins);
+}
+
+function updateUserProfile() {
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    const usernameElement = document.querySelector('.username');
+    if (usernameElement && userData.name) {
+        usernameElement.textContent = userData.name;
+    }
 }

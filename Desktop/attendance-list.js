@@ -105,19 +105,26 @@ function applyFilters() {
 }
 
 function handleSearch(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    const checkins = JSON.parse(localStorage.getItem('checkins')) || [];
-    
+    const searchTerm = e.target.value.toLowerCase().trim();
     if (!searchTerm) {
-        displayAttendanceData(checkins);
+        loadAttendanceData();
         return;
     }
 
+    const checkins = JSON.parse(localStorage.getItem('checkins')) || [];
     const filteredData = checkins.filter(item => 
-        item.classCode.toLowerCase().includes(searchTerm) ||
-        item.lessonName.toLowerCase().includes(searchTerm) ||
-        item.email.toLowerCase().includes(searchTerm)
+        (item.classCode && item.classCode.toLowerCase().includes(searchTerm)) ||
+        (item.lessonName && item.lessonName.toLowerCase().includes(searchTerm)) ||
+        (item.email && item.email.toLowerCase().includes(searchTerm))
     );
 
     displayAttendanceData(filteredData);
+}
+
+function updateUserProfile() {
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    const usernameElement = document.querySelector('.username');
+    if (usernameElement && userData.name) {
+        usernameElement.textContent = userData.name;
+    }
 } 

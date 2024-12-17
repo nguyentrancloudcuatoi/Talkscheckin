@@ -95,7 +95,7 @@ function saveNotificationSettings() {
         email: emailNotifications
     }));
     
-    alert('Đã lưu cài đặt thông báo!');
+    alert('Notification settings saved!');
     closeModal();
 }
 

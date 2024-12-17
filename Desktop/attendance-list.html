@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="attendance-list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    .admin-only {
+        display: none !important;
+    }
+
+    body[data-role="admin"] .admin-only {
+        display: block !important;
+    }
+
+    body[data-role="admin"] .admin-only.notifications {
+        display: flex !important;
+    }
+
+    .teacher-only {
+        display: none;
+    }
+
+    body[data-role="teacher"] .teacher-only {
+        display: block;
+    }
+    </style>
 </head>
 <body>
     <!-- Reuse side menu from dashboard -->
@@ -18,7 +39,7 @@
             <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
             <li class="active"><a href="attendance-list.html"><i class="fas fa-list"></i> Attendance list</a></li>
-            <li><a href="notifications.html"><i class="fas fa-bell"></i> Thông báo công</a></li>
+            <li class="admin-only"><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="logout-btn">
             <button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Log out</button>
@@ -30,11 +51,11 @@
         <header>
             <div class="header-content">
                 <div class="search-bar">
-                    <input type="text" placeholder="Tìm kiếm theo lớp, buổi học hoặc email..." onkeyup="handleSearch(event)">
+                    <input type="text" placeholder="Search by class, session, or email..." onkeyup="handleSearch(event)">
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="user-section">
-                    <div class="notifications">
+                    <div class="notifications admin-only">
                         <i class="fas fa-bell"></i>
                         <span class="notification-badge">3</span>
                     </div>
@@ -51,24 +72,34 @@
                 <h2>Attendance list</h2>
                 
                 <div class="filters-section">
+                    <div class="admin-only" style="display: none;">
+                        <select id="teacherFilter">
+                            <option value="">All teachers</option>
+                        </select>
+                    </div>
+                    <div class="teacher-only">
+                        <select id="statusFilter">
+                            <option value="">All statuses</option>
+                        </select>
+                    </div>
                     <div class="date-filters">
                         <input type="date" id="startDate" placeholder="Từ ngày">
                         <input type="date" id="endDate" placeholder="Đến ngày">
                     </div>
                     <div class="status-filters">
                         <select id="attendanceFilter">
-                            <option value="">Tình trạng điểm danh</option>
-                            <option value="checked">Đã điểm danh</option>
-                            <option value="unchecked">Chưa điểm danh</option>
+                            <option value="">Attendance status</option>
+                            <option value="checked">Marked as attended</option>
+                            <option value="unchecked">Not yet marked</option>
                         </select>
                         <select id="absentFilter">
-                            <option value="">Trạng thái vắng mặt</option>
-                            <option value="absent_notice">Vắng có phép</option>
-                            <option value="absent_no_notice">Vắng không phép</option>
-                            <option value="off">Nghỉ học</option>
+                            <option value="">Absence status</option>
+                            <option value="absent_notice">Excused absence</option>
+                            <option value="absent_no_notice">Unexcused absence</option>
+                            <option value="off">Withdrawn</option>
                         </select>
                     </div>
-                    <button class="apply-filters-btn">Áp dụng</button>
+                    <button class="apply-filters-btn">Apply</button>
                 </div>
 
                 <div class="table-responsive">
@@ -93,11 +124,12 @@
             </div>
         </div>
     </div>
-    <script src="attendance-list.js"></script>
     <div id="teacherDetailsModal" class="teacher-details-modal">
         <div class="teacher-details-content">
+            <button class="close-modal-btn" onclick="closeModal()">×</button>
             <!-- Content will be inserted by JavaScript -->
         </div>
     </div>
+    <script src="attendance-list.js"></script>
 </body>
 </html> 

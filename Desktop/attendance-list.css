@@ -171,13 +171,28 @@ tr:first-child {
     padding: 20px;
     border-radius: 8px;
     width: 80%;
-    max-width: 1000px;
+    max-width: 600px;
     max-height: 80vh;
     overflow-y: auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close-modal-btn:hover {
+    color: #f44336; /* Change color on hover */
 }
 
 .details-table {
@@ -195,4 +210,34 @@ tr:first-child {
 
 .details-table th {
     background: #f5f5f5;
+}
+
+/* Hide notification elements */
+.notifications,
+.notification-badge {
+    display: none !important;
+}
+
+/* Hide admin-only elements for non-admin users */
+.admin-only {
+    display: none !important;
+}
+
+body[data-role="admin"] .admin-only {
+    display: block !important;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close-modal-btn:hover {
+    color: #f44336; /* Change color on hover */
 } 

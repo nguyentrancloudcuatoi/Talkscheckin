@@ -18,7 +18,7 @@
             <li class="active"><a href="#"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
             <li><a href="attendance-list.html"><i class="fas fa-list"></i> Attendance list</a></li>
-            <li class="admin-only"><a href="notifications.html"><i class="fas fa-bell"></i> Thông báo công</a></li>
+            <li class="admin-only"><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="logout-btn">
             <button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Log out</button>
@@ -31,7 +31,7 @@
         <header>
             <div class="header-content">
                 <div class="search-bar">
-                    <input type="text" placeholder="Tìm kiếm...">
+                    <input type="text" placeholder="Search...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="user-section">
@@ -53,11 +53,11 @@
     <div class="stats-overview">
         <div class="stats-row">
             <div class="stat-box">
-                <div class="stat-icon">
+                <div class="stat-icon success">
                     <i class="fas fa-chalkboard-teacher"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Tổng số buổi dạy</h3>
+                    <h3>Total Classes</h3>
                     <div class="stat-numbers">
                         <div class="stat-item">
                             <span class="label">Online:</span>
@@ -76,11 +76,11 @@
                     <i class="fas fa-user-clock"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Chưa điểm danh</h3>
+                    <h3>Not yet marked</h3>
                     <div class="stat-numbers">
                         <div class="stat-item large">
                             <span class="value">5</span>
-                            <span class="label">Buổi học</span>
+                            <span class="label">Class session</span>
                         </div>
                     </div>
                 </div>
@@ -91,14 +91,14 @@
                     <i class="fas fa-user-times"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Vắng mặt</h3>
+                    <h3>Absence</h3>
                     <div class="stat-numbers">
                         <div class="stat-item">
-                            <span class="label">Có phép:</span>
+                            <span class="label">Excused:</span>
                             <span class="value">2</span>
                         </div>
                         <div class="stat-item">
-                            <span class="label">Không phép:</span>
+                            <span class="label">Unexcused:</span>
                             <span class="value">1</span>
                         </div>
                     </div>
@@ -110,11 +110,11 @@
                     <i class="fas fa-clock"></i>
                 </div>
                 <div class="stat-content">
-                    <h3>Tổng giờ dạy</h3>
+                    <h3>Total teaching hours</h3>
                     <div class="stat-numbers">
                         <div class="stat-item large">
                             <span class="value">80</span>
-                            <span class="label">Giờ</span>
+                            <span class="label">Hours</span>
                         </div>
                     </div>
                 </div>
@@ -125,12 +125,12 @@
     <!-- Chart Section -->
     <div class="chart-section">
         <div class="chart-header">
-            <h2>Thống kê buổi dạy</h2>
+            <h2>Teaching session statistics</h2>
             <div class="chart-filters">
                 <select id="chartPeriod">
-                    <option value="week">Tuần này</option>
-                    <option value="month">Tháng này</option>
-                    <option value="custom">Tùy chọn</option>
+                    <option value="week">This week</option>
+                    <option value="month">This month</option>
+                    <option value="custom">Options</option>
                 </select>
             </div>
         </div>
@@ -143,12 +143,12 @@
     <!-- Table Section -->
         <div class="table-section">
             <div class="table-header">
-                <h2>Danh sách buổi dạy</h2>
+                <h2>Teaching session list</h2>
                 <div class="table-actions">
                     <select id="filterStatus">
-                        <option value="">Tất cả trạng thái</option>
-                        <option value="checked">Đã điểm danh</option>
-                        <option value="unchecked">Chưa điểm danh</option>
+                        <option value="">All statuses</option>
+                        <option value="checked">Marked as attended</option>
+                        <option value="unchecked">Not yet marked</option>
                     </select>
                     <input type="date" id="filterDate">
                 </div>
@@ -157,14 +157,14 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Ngày</th>
-                            <th>Mã lớp</th>
-                            <th>Hình thức</th>
-                            <th>Tên buổi học</th>
-                            <th>Điểm danh</th>
-                            <th>Trạng thái</th>
-                            <th>Số giờ</th>
-                            <th>Ghi chú</th>
+                            <th>Date</th>
+                            <th>Class code</th>
+                            <th>Mode</th>
+                            <th>Class session name</th>
+                            <th>Attendance</th>
+                            <th>Status</th>
+                            <th>Number of hours</th>
+                            <th>Notes</th>
                         </tr>
                     </thead>
                     <tbody id="teachingTableBody">

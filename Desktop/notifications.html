@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông báo công - Talks English</title>
+    <title>Notifications - Talks English</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="notifications.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,7 +17,7 @@
             <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
             <li><a href="attendance-list.html"><i class="fas fa-list"></i> Attendance list</a></li>
-            <li class="active"><a href="notifications.html"><i class="fas fa-bell"></i> Thông báo công</a></li>
+            <li class="active"><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="logout-btn">
             <button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Log out</button>
@@ -28,7 +28,7 @@
         <header>
             <div class="header-content">
                 <div class="search-bar">
-                    <input type="text" placeholder="Tìm kiếm thông báo...">
+                    <input type="text" placeholder="Search notifications...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="user-section">
@@ -47,9 +47,9 @@
         <div class="content">
             <div class="notifications-container">
                 <div class="notifications-header">
-                    <h2>Thông báo công</h2>
+                    <h2>Notifications</h2>
                     <button class="settings-btn" onclick="openNotificationSettings()">
-                        <i class="fas fa-cog"></i> Cài đặt thông báo
+                        <i class="fas fa-cog"></i> Notification settings
                     </button>
                 </div>
 
@@ -63,28 +63,29 @@
     <!-- Modal cài đặt thông báo -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <h3>Cài đặt thông báo</h3>
+            <h3>Notification settings</h3>
             <div class="settings-form">
                 <div class="setting-item">
                     <label>
                         <input type="checkbox" id="systemNotifications" checked>
-                        Nhận thông báo trên hệ thống
+                        Receive notifications on the system
                     </label>
                 </div>
                 <div class="setting-item">
                     <label>
                         <input type="checkbox" id="emailNotifications">
-                        Nhận thông báo qua email
+                        Receive notifications via email
                     </label>
                 </div>
                 <div class="modal-buttons">
-                    <button onclick="saveNotificationSettings()">Lưu</button>
-                    <button onclick="closeModal()">Hủy</button>
+                    <button onclick="saveNotificationSettings()">Save</button>
+                    <button onclick="closeModal()">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
     
     <script src="notifications.js"></script>
+    <script src="dashboard.js"></script>
 </body>
 </html> 

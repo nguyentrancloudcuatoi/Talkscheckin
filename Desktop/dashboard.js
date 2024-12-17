@@ -212,7 +212,7 @@ function updateMenu() {
     const isAdmin = userData.role === 'admin';
     const menuItems = document.querySelectorAll('.side-menu ul li');
     
-    // Ẩn menu thông báo công nếu không phải admin
+    // Ẩn menu Notifications nếu không phải admin
     if (!isAdmin) {
         menuItems.forEach(item => {
             if (item.querySelector('a').href.includes('notifications.html')) {

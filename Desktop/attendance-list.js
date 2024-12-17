@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthStatus();
+    checkPermission();
     updateUserProfile();
     loadAttendanceData();
     
-    // Thêm event listeners cho các bộ lọc
+    // Add event listeners for filters
     document.querySelector('.apply-filters-btn').addEventListener('click', applyFilters);
     document.querySelector('.search-bar input').addEventListener('keyup', handleSearch);
 });
@@ -18,7 +19,9 @@ function loadAttendanceData() {
     if (isAdmin) {
         displayAdminAttendanceData(checkins);
     } else {
-        displayTeacherAttendanceData(checkins);
+        // Filter checkins for current teacher
+        const teacherCheckins = checkins.filter(item => item.email === userData.email);
+        displayTeacherAttendanceData(teacherCheckins);
     }
 }
 
@@ -93,10 +96,8 @@ function viewTeacherDetails(email) {
     const checkins = JSON.parse(localStorage.getItem('checkins')) || [];
     const teacherCheckins = checkins.filter(item => item.email === email);
     
-    // Hiển thị modal chi tiết
-    const modal = document.getElementById('teacherDetailsModal');
+    // Display modal content
     const modalContent = document.querySelector('.teacher-details-content');
-    
     modalContent.innerHTML = `
         <h3>Chi tiết điểm danh - ${email}</h3>
         <table class="details-table">
@@ -126,8 +127,9 @@ function viewTeacherDetails(email) {
             </tbody>
         </table>
     `;
-    
-    modal.style.display = 'block';
+
+    const modal = document.getElementById('teacherDetailsModal');
+    modal.style.display = 'block'; // Show the modal
 }
 
 function displayTeacherAttendanceData(data) {
@@ -262,4 +264,30 @@ function handleLogout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userData');
     window.location.href = '/index.html';
+}
+
+function checkPermission() {
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    if (userData.role !== 'teacher' && userData.role !== 'admin') {
+        window.location.href = '/Desktop/dashboard.html';
+        return;
+    }
+    
+    // Set role attribute on body
+    document.body.setAttribute('data-role', userData.role);
+    
+    // Show or hide admin-only elements
+    const adminElements = document.querySelectorAll('.admin-only');
+    adminElements.forEach(element => {
+        if (userData.role === 'admin') {
+            element.style.display = 'block'; // Show for admin
+        } else {
+            element.style.display = 'none'; // Hide for others
+        }
+    });
+}
+
+function closeModal() {
+    const modal = document.getElementById('teacherDetailsModal');
+    modal.style.display = 'none'; // Hide the modal
 } 

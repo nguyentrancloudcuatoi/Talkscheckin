@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthStatus();
+    checkPermission();
     updateUserProfile();
     prefillUserData();
     checkSavedData();
+    const logoutBtn = document.querySelector('.logout-btn button');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+    }
 });
 
 function checkAuthStatus() {
@@ -27,13 +32,26 @@ function handleLogout() {
 
 function prefillUserData() {
     const userData = JSON.parse(localStorage.getItem('userData')) || {};
-    if (userData.email) {
-        document.getElementById('email').value = userData.email;
+    
+    // Prefill and lock email field
+    const emailInput = document.getElementById('email');
+    if (emailInput) {
+        emailInput.value = userData.email || '';
+        // Only admin can edit other users' data
+        if (userData.role !== 'admin') {
+            emailInput.readOnly = true;
+        }
     }
 }
 
 function handleCheckin(event) {
     event.preventDefault();
+    
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    if (userData.role !== 'teacher' && userData.role !== 'admin') {
+        alert('Bạn không có quyền thực hiện chức năng này!');
+        return false;
+    }
     
     // Validate required fields
     const requiredFields = ['email', 'classCode', 'teachingMethod', 'lessonName', 'lessonDate', 'duration'];
@@ -90,4 +108,15 @@ function updateUserProfile() {
     if (usernameElement && userData.name) {
         usernameElement.textContent = userData.name;
     }
+}
+
+function checkPermission() {
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    if (userData.role !== 'teacher' && userData.role !== 'admin') {
+        window.location.href = '/Desktop/dashboard.html';
+        return;
+    }
+    
+    // Set role attribute on body
+    document.body.setAttribute('data-role', userData.role);
 }

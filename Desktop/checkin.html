@@ -18,10 +18,12 @@
             <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li class="active"><a href="checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
             <li><a href="attendance-list.html"><i class="fas fa-list"></i> Attendance list</a></li>
-            <li><a href="#"><i class="fas fa-bell"></i> Thông báo công</a></li>
+            <li class="admin-only"><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="logout-btn">
-            <a href="/Sign/index.html"><button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Log out</button></a>
+            <button type="button" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i> Log out
+            </button>
         </div>
     </nav>
 
@@ -30,11 +32,11 @@
         <header>
             <div class="header-content">
                 <div class="search-bar">
-                    <input type="text" placeholder="Tìm kiếm...">
+                    <input type="text" placeholder="Search...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="user-section">
-                    <div class="notifications">
+                    <div class="notifications admin-only">
                         <i class="fas fa-bell"></i>
                         <span class="notification-badge">3</span>
                     </div>
@@ -118,6 +120,10 @@
                         <button type="button" class="edit-btn" onclick="requestEdit()">Request Edit</button>
                     </div>
                 </form>
+                <div class="admin-controls admin-only" style="display: none;">
+                    <button onclick="approveAllCheckins()">Duyệt tất cả</button>
+                    <button onclick="exportCheckinData()">Xuất báo cáo</button>
+                </div>
             </div>
         </div>
     </div>

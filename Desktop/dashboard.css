@@ -434,4 +434,14 @@ tbody tr:hover {
     font-weight: 600;
     color: #333;
     font-size: 18px;
+}
+
+/* Ẩn menu admin khi không phải admin */
+.side-menu ul li.admin-only {
+    display: none;
+}
+
+/* Hiển thị menu admin khi là admin */
+body[data-role="admin"] .side-menu ul li.admin-only {
+    display: block;
 } 

@@ -9,15 +9,18 @@ function handleLogin(event) {
         return false;
     }
 
-    // Lưu trạng thái đăng nhập
+    // Giả lập kiểm tra role (trong thực tế sẽ check từ API)
+    const isAdmin = email.includes('admin');
+    
+    // Lưu thông tin user và role
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('userData', JSON.stringify({
         name: email.split('@')[0],
         email: email,
-        avatar: '/image/avatar-default.png'
+        avatar: '/image/avatar-default.png',
+        role: isAdmin ? 'admin' : 'teacher'
     }));
 
-    // Chuyển hướng đến dashboard
     window.location.href = '/Desktop/dashboard.html';
     return false;
 }

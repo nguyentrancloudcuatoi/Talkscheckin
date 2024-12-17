@@ -84,6 +84,9 @@ function updateUserProfile() {
     const usernameElement = document.querySelector('.username');
     const avatarElement = document.querySelector('.avatar');
     
+    // Thêm role vào body
+    document.body.setAttribute('data-role', userData.role || 'teacher');
+    
     if (userData.name) {
         usernameElement.textContent = userData.name;
     }
@@ -202,4 +205,19 @@ function refreshData() {
     // Cập nhật lại dữ liệu từ server
     initializeTable();
     updateChartData(document.getElementById('chartPeriod').value);
+}
+
+function updateMenu() {
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    const isAdmin = userData.role === 'admin';
+    const menuItems = document.querySelectorAll('.side-menu ul li');
+    
+    // Ẩn menu thông báo công nếu không phải admin
+    if (!isAdmin) {
+        menuItems.forEach(item => {
+            if (item.querySelector('a').href.includes('notifications.html')) {
+                item.style.display = 'none';
+            }
+        });
+    }
 }

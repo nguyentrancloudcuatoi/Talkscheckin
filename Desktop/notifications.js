@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthStatus();
+    checkPermission();
     updateUserProfile();
     loadNotifications();
 });
@@ -96,4 +97,12 @@ function saveNotificationSettings() {
     
     alert('Đã lưu cài đặt thông báo!');
     closeModal();
+}
+
+function checkPermission() {
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    if (userData.role !== 'admin') {
+        window.location.href = '/Desktop/dashboard.html';
+        return;
+    }
 } 

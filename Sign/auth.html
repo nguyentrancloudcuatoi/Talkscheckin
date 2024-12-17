@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talks English - Authentication</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="container" id="loginForm">
+        <div class="form-container">
+            <div class="login-layout">
+                <div class="logo-section">
+                    <img src="/ảnh/logodangnhap.png" alt="Logo" class="logo">
+                </div>
+                <div class="login-section">
+                    <h1>LOGIN</h1>
+                    <form onsubmit="return handleLogin(event)">
+                        <input type="email" placeholder="Email" required>
+                        <input type="password" placeholder="Password" required>
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <div class="button-group">
+                            <button type="submit" class="login-btn">LOG IN</button>
+                            <button type="button" class="signup-btn" onclick="showRegisterForm()">SIGN UP</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="container hidden" id="registerForm">
+        <div class="form-container register-container">
+            <div class="register-logo">
+                <img src="/ảnh/logodangnhap.png" alt="Logo" class="logo-small">
+            </div>
+            <h1>Register</h1>
+            <form onsubmit="return handleRegister(event)">
+                <input type="text" placeholder="Full Name" required>
+                <input type="tel" placeholder="Phone" required>
+                <input type="email" placeholder="Email" required>
+                <input type="text" placeholder="Teacher ID" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Re-enter password" required>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html> 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách điểm danh - Talks English</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="attendance-list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Reuse side menu from dashboard -->
+    <nav class="side-menu">
+        <div class="logo-container">
+            <img src="/ảnh/logo.png" alt="Logo" class="logo">
+        </div>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
+            <li class="active"><a href="attendance-list.html"><i class="fas fa-list"></i> Danh sách điểm danh</a></li>
+            <li><a href="#"><i class="fas fa-bell"></i> Thông báo công</a></li>
+        </ul>
+        <div class="logout-btn">
+            <a href="/Sign/auth.html"><button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Reuse header from dashboard -->
+        <header>
+            <div class="header-content">
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm theo lớp, buổi học hoặc email...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-section">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="/ảnh/avatar.jpg" alt="User Avatar" class="avatar">
+                        <span class="username">John Doe</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="attendance-list-container">
+                <h2>Danh sách điểm danh</h2>
+                
+                <div class="filters-section">
+                    <div class="date-filters">
+                        <input type="date" id="startDate" placeholder="Từ ngày">
+                        <input type="date" id="endDate" placeholder="Đến ngày">
+                    </div>
+                    <div class="status-filters">
+                        <select id="attendanceFilter">
+                            <option value="">Tình trạng điểm danh</option>
+                            <option value="checked">Đã điểm danh</option>
+                            <option value="unchecked">Chưa điểm danh</option>
+                        </select>
+                        <select id="absentFilter">
+                            <option value="">Trạng thái vắng mặt</option>
+                            <option value="absent_notice">Vắng có phép</option>
+                            <option value="absent_no_notice">Vắng không phép</option>
+                            <option value="off">Nghỉ học</option>
+                        </select>
+                    </div>
+                    <button class="apply-filters-btn">Áp dụng</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Mã lớp</th>
+                                <th>Hình thức</th>
+                                <th>Tên buổi học</th>
+                                <th>Điểm danh</th>
+                                <th>Trạng thái</th>
+                                <th>Số giờ</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody">
+                            <!-- Data will be inserted here via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="attendance-list.js"></script>
+</body>
+</html> 

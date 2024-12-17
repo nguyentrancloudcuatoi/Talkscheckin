@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('/ảnh/bietthusach.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 850px;
+    max-width: 950px;  /* Tăng độ rộng để chứa cả logo và form */
+    padding: 40px;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    /* width: 850px;
+    height: 550px; */
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-layout {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-section {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+
+.login-section {
+    flex: 1;
+    padding-left: 40px;
+    border-left: 1px solid #ddd;
+}
+
+h1 {
+    text-align: center;
+    color: #0E008A;
+    margin-bottom: 30px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.remember-me {
+    margin: 15px 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+}
+
+.login-btn {
+    background-color: #0E008A;
+    color: white;
+    width: 100%;
+    padding: auto;
+    border: none;
+}
+
+.signup-btn {
+    background-color: #0E008A;
+    color: white;
+}
+
+.hidden {
+    display: none;
+} 
+
+/* Điều chỉnh padding cho form Register để không bị che bởi logo */
+#registerForm .form-container {
+    padding: 30px;
+    border-radius: 30px;
+    width: 300px; /* Điều chỉnh độ rộng cố định */
+    margin: auto;
+}
+
+#registerForm .register-logo {
+    position: relative;
+    top: -170px;
+    left: -750px;
+}
+
+#registerForm .logo-small {
+    position: relative;
+    width: 150px; /* Điều chỉnh kích thước logo nhỏ hơn */
+    height: auto;
+}
+
+#registerForm h1 {
+    text-align: center;
+    color: #0E008A;
+    margin-bottom: 50px;
+    font-size: 24px;
+}
+
+#registerForm input[type="text"],
+#registerForm input[type="email"],
+#registerForm input[type="password"],
+#registerForm input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 5;
+    border: 0.5px solid #ddd;
+    border-radius: 2.5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+#registerForm .signup-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #0E008A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}

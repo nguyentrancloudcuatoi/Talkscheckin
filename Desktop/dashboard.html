@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Talks English</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Vertical Menu -->
+    <nav class="side-menu">
+        <div class="logo-container">
+            <img src="/ảnh/logo.png" alt="Logo" class="logo">
+        </div>
+        <ul>
+            <li class="active"><a href="#"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="/Desktop/checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
+            <li><a href="/Desktop/attendance-list.html"><i class="fas fa-list"></i> Danh sách điểm danh</a></li>
+            <li><a href="#"><i class="fas fa-bell"></i> Thông báo công</a></li>
+        </ul>
+        <div class="logout-btn">
+            <a href="/Sign/auth.html"><button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button></a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Header -->
+        <header>
+            <div class="header-content">
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="user-section">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="/ảnh/avatar.jpg" alt="User Avatar" class="avatar">
+                        <span class="username">John Doe</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+<!-- Page Content -->
+<div class="content">
+    <!-- Overview Section -->
+    <div class="stats-overview">
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Tổng số buổi dạy</h3>
+                    <div class="stat-numbers">
+                        <div class="stat-item">
+                            <span class="label">Online:</span>
+                            <span class="value">25</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Offline:</span>
+                            <span class="value">15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-icon warning">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Chưa điểm danh</h3>
+                    <div class="stat-numbers">
+                        <div class="stat-item large">
+                            <span class="value">5</span>
+                            <span class="label">Buổi học</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-icon danger">
+                    <i class="fas fa-user-times"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Vắng mặt</h3>
+                    <div class="stat-numbers">
+                        <div class="stat-item">
+                            <span class="label">Có phép:</span>
+                            <span class="value">2</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">Không phép:</span>
+                            <span class="value">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <div class="stat-icon success">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>Tổng giờ dạy</h3>
+                    <div class="stat-numbers">
+                        <div class="stat-item large">
+                            <span class="value">80</span>
+                            <span class="label">Giờ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="chart-section">
+        <div class="chart-header">
+            <h2>Thống kê buổi dạy</h2>
+            <div class="chart-filters">
+                <select id="chartPeriod">
+                    <option value="week">Tuần này</option>
+                    <option value="month">Tháng này</option>
+                    <option value="custom">Tùy chọn</option>
+                </select>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="teachingChart"></canvas>
+        </div>
+    </div>
+
+
+    <!-- Table Section -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2>Danh sách buổi dạy</h2>
+                <div class="table-actions">
+                    <select id="filterStatus">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="checked">Đã điểm danh</option>
+                        <option value="unchecked">Chưa điểm danh</option>
+                    </select>
+                    <input type="date" id="filterDate">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Mã lớp</th>
+                            <th>Hình thức</th>
+                            <th>Tên buổi học</th>
+                            <th>Điểm danh</th>
+                            <th>Trạng thái</th>
+                            <th>Số giờ</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teachingTableBody">
+                        <!-- Table data will be inserted here via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html> 

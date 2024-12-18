@@ -9,17 +9,17 @@
 
 .checkin-container {
     background: white;
-    padding: 40px;
-    border-radius: 20px;
+    padding: 15px;
+    border-radius: 10px;
     box-shadow: var(--shadow);
-    max-width: 900px;
+    max-width: 500px;
     margin: 20px auto;
     border: 1px solid var(--border-color);
 }
 
 .checkin-container h2 {
     color: var(--primary-color);
-    margin-bottom: 35px;
+    margin-bottom: 15px;
     font-size: 24px;
     text-align: center;
     position: relative;

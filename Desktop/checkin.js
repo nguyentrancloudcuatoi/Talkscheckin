@@ -49,16 +49,16 @@ function handleCheckin(event) {
     
     const userData = JSON.parse(localStorage.getItem('userData')) || {};
     if (userData.role !== 'teacher' && userData.role !== 'admin') {
-        alert('Bạn không có quyền thực hiện chức năng này!');
+        alert('You do not have permission to perform this action!');
         return false;
     }
     
     // Validate required fields
-    const requiredFields = ['email', 'classCode', 'teachingMethod', 'lessonName', 'lessonDate', 'duration'];
+    const requiredFields = ['email', 'classCode', 'teachingMethod', 'session', 'materials', 'lessonNumber', 'lessonName', 'state', 'duration', 'vietnameseTime', 'attendanceStatus'];
     const missingFields = requiredFields.filter(field => !document.getElementById(field).value);
     
     if (missingFields.length > 0) {
-        alert('Vui lòng điền đầy đủ thông tin bắt buộc');
+        alert('Please fill in all required fields');
         return false;
     }
     
@@ -67,10 +67,12 @@ function handleCheckin(event) {
         classCode: document.getElementById('classCode').value,
         teachingMethod: document.getElementById('teachingMethod').value,
         session: document.getElementById('session').value,
+        materials: document.getElementById('materials').value,
         lessonNumber: document.getElementById('lessonNumber').value,
         lessonName: document.getElementById('lessonName').value,
-        lessonDate: document.getElementById('lessonDate').value,
+        state: document.getElementById('state').value,
         duration: document.getElementById('duration').value,
+        vietnameseTime: document.getElementById('vietnameseTime').value,
         attendanceStatus: document.getElementById('attendanceStatus').value || 'present',
         comments: document.getElementById('comments').value,
         timestamp: new Date().toISOString(),
@@ -82,11 +84,11 @@ function handleCheckin(event) {
         checkins.unshift(formData);
         localStorage.setItem('checkins', JSON.stringify(checkins));
         console.log('Saved checkin data:', formData);
-        alert('Check-in thành công!');
+        alert('Check-in successful!');
         window.location.href = 'attendance-list.html';
     } catch (error) {
         console.error('Error saving checkin:', error);
-        alert('Có lỗi xảy ra, vui lòng thử lại!');
+        alert('An error occurred, please try again!');
     }
     
     return false;

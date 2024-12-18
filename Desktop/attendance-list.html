@@ -3,34 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance list - Talks English</title>
+    <title>Attendance List - Talks English</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="attendance-list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-    .admin-only {
-        display: none !important;
-    }
-
-    body[data-role="admin"] .admin-only {
-        display: block !important;
-    }
-
-    body[data-role="admin"] .admin-only.notifications {
-        display: flex !important;
-    }
-
-    .teacher-only {
-        display: none;
-    }
-
-    body[data-role="teacher"] .teacher-only {
-        display: block;
-    }
-    </style>
 </head>
 <body>
-    <!-- Reuse side menu from dashboard -->
     <nav class="side-menu">
         <div class="logo-container">
             <img src="/image/logo.png" alt="Logo" class="logo">
@@ -38,41 +16,34 @@
         <ul>
             <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
             <li><a href="checkin.html"><i class="fas fa-clock"></i> Check-in</a></li>
-            <li class="active"><a href="attendance-list.html"><i class="fas fa-list"></i> Attendance list</a></li>
+            <li class="active"><a href="attendance-list.html"><i class="fas fa-list"></i> Attendance List</a></li>
             <li class="admin-only"><a href="notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
         </ul>
         <div class="logout-btn">
-            <button onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Log out</button>
+            <button type="button" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Log out</button>
         </div>
     </nav>
 
     <div class="main-content">
-        <!-- Reuse header from dashboard -->
         <header>
             <div class="header-content">
                 <div class="search-bar">
-                    <input type="text" placeholder="Search by class, session, or email..." onkeyup="handleSearch(event)">
+                    <input type="text" placeholder="Search attendance...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
-                <div class="user-section">
-                    <div class="notifications admin-only">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-badge">3</span>
-                    </div>
-                    <div class="user-profile">
-                        <img src="/image/avatar.jpg" alt="User Avatar" class="avatar">
-                        <span class="username">John Doe</span>
-                    </div>
+                <div class="user-profile">
+                    <img src="/image/avatar.jpg" alt="User Avatar" class="avatar">
+                    <span class="username">John Doe</span>
                 </div>
             </div>
         </header>
 
         <div class="content">
             <div class="attendance-list-container">
-                <h2>Attendance list</h2>
+                <h2>Attendance List</h2>
                 
                 <div class="filters-section">
-                    <div class="admin-only" style="display: none;">
+                    <div class="admin-only">
                         <select id="teacherFilter">
                             <option value="">All teachers</option>
                         </select>
@@ -83,8 +54,8 @@
                         </select>
                     </div>
                     <div class="date-filters">
-                        <input type="date" id="startDate" placeholder="Từ ngày">
-                        <input type="date" id="endDate" placeholder="Đến ngày">
+                        <input type="date" id="startDate" placeholder="From date">
+                        <input type="date" id="endDate" placeholder="To date">
                     </div>
                     <div class="status-filters">
                         <select id="attendanceFilter">
@@ -107,12 +78,12 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>ID Class</th>
-                                <th>Option</th>
+                                <th>Class Code</th>
+                                <th>Teaching Method</th>
                                 <th>Lesson Name</th>
-                                <th>Check-in</th>
+                                <th>Attendance</th>
                                 <th>Status</th>
-                                <th>Time</th>
+                                <th>Duration</th>
                                 <th>Notes</th>
                             </tr>
                         </thead>
@@ -124,12 +95,7 @@
             </div>
         </div>
     </div>
-    <div id="teacherDetailsModal" class="teacher-details-modal">
-        <div class="teacher-details-content">
-            <button class="close-modal-btn" onclick="closeModal()">×</button>
-            <!-- Content will be inserted by JavaScript -->
-        </div>
-    </div>
+
     <script src="attendance-list.js"></script>
 </body>
 </html> 

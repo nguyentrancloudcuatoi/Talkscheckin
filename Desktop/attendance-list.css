@@ -1,8 +1,15 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
 .attendance-list-container {
     background: white;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin: 20px;
 }
 
@@ -38,17 +45,17 @@
 }
 
 .apply-filters-btn {
-    padding: 10px 20px;
+    padding: 10px 15px;
     background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .apply-filters-btn:hover {
-    background-color: #0a0066;
+    background-color: darken(var(--primary-color), 10%);
+    color: #000;
 }
 
 .table-responsive {
@@ -58,13 +65,12 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 th, td {
-    padding: 15px;
+    padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
@@ -111,7 +117,7 @@ tr:hover {
     font-style: italic;
 }
 
-/* Thêm animation cho dữ liệu mới */
+/* Animation for new data */
 @keyframes highlightNew {
     from { background-color: #fff3e0; }
     to { background-color: transparent; }
@@ -129,40 +135,21 @@ tr:first-child {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
-.status-completed {
-    background: #4caf50;
-    color: white;
-}
-
-.status-good {
-    background: #8bc34a;
-    color: white;
-}
-
-.status-warning {
-    background: #ffc107;
-    color: black;
-}
-
-.status-danger {
-    background: #f44336;
-    color: white;
+.view-details-btn:hover {
+    background-color: darken(var(--primary-color), 10%);
 }
 
 /* Modal styles */
 .teacher-details-modal {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
@@ -178,53 +165,6 @@ tr:first-child {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.close-modal-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #333;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    cursor: pointer;
-}
-
-.close-modal-btn:hover {
-    color: #f44336; /* Change color on hover */
-}
-
-.details-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.details-table th,
-.details-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-.details-table th {
-    background: #f5f5f5;
-}
-
-/* Hide notification elements */
-.notifications,
-.notification-badge {
-    display: none !important;
-}
-
-/* Hide admin-only elements for non-admin users */
-.admin-only {
-    display: none !important;
-}
-
-body[data-role="admin"] .admin-only {
-    display: block !important;
 }
 
 .close-modal-btn {
